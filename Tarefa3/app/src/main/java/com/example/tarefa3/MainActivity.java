@@ -20,6 +20,7 @@ import com.example.tarefa3.databinding.ActivityMainBinding;
 import com.google.gson.Gson;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -68,18 +69,14 @@ public class MainActivity extends AppCompatActivity {
         binding.rvEstudantes.setAdapter(adapter);
     }
 
-    private void abrirSegundaTela() {
-        List<Student> listaAtual = viewModel.getListaEstudantes().getValue();
+private void abrirSegundaTela() {
+    List<Student> listaAtual = viewModel.getListaEstudantes().getValue();
 
-        if (listaAtual != null && !listaAtual.isEmpty()) {
-            String json = new Gson().toJson(listaAtual);
-
-            Intent intent = new Intent(MainActivity.this, SegundaActivity.class);
-            intent.putExtra("lista_estudantes", json);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Aguarde o carregamento dos dados", Toast.LENGTH_SHORT).show();
-        }
+    if (listaAtual != null && !listaAtual.isEmpty()) {
+        Intent intent = new Intent(this, SegundaActivity.class);
+        intent.putParcelableArrayListExtra("alunos", new ArrayList<>(listaAtual));
+        startActivity(intent);
     }
+}
 
 }

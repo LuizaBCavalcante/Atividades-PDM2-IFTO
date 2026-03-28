@@ -1,13 +1,16 @@
 package com.example.tarefa3;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("jsonschema2pojo")
-public class Student{
+public class Student implements Parcelable {
 
     @SerializedName("nome")
     @Expose
@@ -21,6 +24,20 @@ public class Student{
     @SerializedName("presenca")
     @Expose
     private List<Boolean> presenca;
+
+    protected Student(Parcel in) {
+        nome = in.readString();
+        if (in.readByte() == 0) {
+            idade = null;
+        } else {
+            idade = in.readInt();
+        }
+        notas = new ArrayList<Double>();
+        in.readList(notas, Double.class.getClassLoader());
+
+        presenca = new ArrayList<Boolean>();
+        in.readList(presenca, Boolean.class.getClassLoader());
+    }
 
     public String getNome() {
         return nome;
@@ -89,4 +106,34 @@ public class Student{
                 ", idade=" + idade +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nome);
+        if (idade == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(idade);
+        }
+        dest.writeList(notas);
+        dest.writeList(presenca);
+    }
+
+    public static final Creator<Student> CREATOR = new Creator<Student>() {
+        @Override
+        public Student createFromParcel(Parcel in) {
+            return new Student(in);
+        }
+
+        @Override
+        public Student[] newArray(int size) {
+            return new Student[size];
+        }
+    };
 }

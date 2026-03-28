@@ -12,11 +12,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="40dp"
+            android:text="Média Geral da Turma:"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Status dos Alunos"
+            android:id="@+id/txtMediaGeral"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -25,16 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="10dp" />
-
-        <TextView
-            android:id="@+id/txtMediaGeral"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_blue_dark" />
+            android:layout_marginTop="10dp"
+            android:paddingBottom="40dp"/>
 
     </LinearLayout>
 </layout>
