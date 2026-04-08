@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_idades"
+        android:title="Maior/Menor Idade"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_media_imc"
+        android:title="Média do IMC"
+        app:showAsAction="never" />
+</menu>
